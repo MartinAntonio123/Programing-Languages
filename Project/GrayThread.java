@@ -6,14 +6,17 @@ public class GrayThread extends Thread{
 	A01701167
 
 	*/
-	private int begin, rows, cols;
+	private int begin, rows, cols, redf, greenf, bluef;
 	private BufferedImage img;
 
-	public GrayThread(int rows, int cols, int begin, BufferedImage img){
+	public GrayThread(int rows, int cols, int begin, BufferedImage img, int red, int green, int blue){
 		this.begin = begin;
 		this.rows = rows;
 		this.cols = cols;
 		this.img = img;
+		this.redf = red;
+		this.greenf = green;
+		this.bluef = blue;
 	}
 	public void run() {
 		/*
@@ -36,9 +39,9 @@ public class GrayThread extends Thread{
 						// (220, 220, 220) // gray
 
 						int color;
-						color = 220 * (int) L / 255;
-						color = (color << 8) | 220 * (int) L / 255;
-						color = (color << 8) | 220 * (int) L / 255;
+						color = redf * (int) L / 255;
+						color = (color << 8) | greenf * (int) L / 255;
+						color = (color << 8) | bluef * (int) L / 255;
 
 						img.setRGB(j, i, color); // sets the pixeles to specified color  (negative image)
 				}
